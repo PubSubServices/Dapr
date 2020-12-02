@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Dapr;
+﻿using Dapr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Shared;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MicroServiceA.Controllers
 {
@@ -15,6 +13,7 @@ namespace MicroServiceA.Controllers
   public class MessageController : ControllerBase
   {
     private readonly ILogger<MessageController> _logger;
+
     public MessageController(ILogger<MessageController> logger)
     {
       _logger = logger;
@@ -24,7 +23,7 @@ namespace MicroServiceA.Controllers
     [Route("api/message")]
     public async Task<IActionResult> ReceiveMessage([FromBody] MessageMicroA message)
     {
-      _logger.LogInformation($"Message with id {message.Id.ToString()} received! ccccccccccccccccccc");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.Id.ToString()} received!");
 
       //Validate message received
       using (var httpClient = new HttpClient())
@@ -34,7 +33,7 @@ namespace MicroServiceA.Controllers
            new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
            );
 
-        _logger.LogInformation($"Message with id {message.Id.ToString()} published with status {result.StatusCode}! bbbbbbbbbbbbb");
+        _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.Id.ToString()} published with status {result.StatusCode}!");
       }
 
       return Ok();
@@ -46,7 +45,7 @@ namespace MicroServiceA.Controllers
     public async Task<IActionResult> ProcessOrder([FromBody] MessageMicroA message)
     {
       //Process message placeholder
-      _logger.LogInformation($"Message with id {message.Id.ToString()} processed! aaaaaaaaaaaa");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.Id.ToString()} processed!");
       return Ok();
     }
   }
