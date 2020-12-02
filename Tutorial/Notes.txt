@@ -1,0 +1,8 @@
+based on tutorial https://devblogs.microsoft.com/premier-developer/dapr-in-a-microservices-architecture/
+
+powershell run as admin
+
+enable wsl2 in docker
+
+
+dapr run --app-id pubsub --app-port 5000 --dapr-http-port 3500 dotnet run

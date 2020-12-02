@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Dapr;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Tutorial.Controllers
 {
@@ -19,7 +24,7 @@ namespace Tutorial.Controllers
     [Route("api/message")]
     public async Task<IActionResult> ReceiveMessage([FromBody] Message message)
     {
-      _logger.LogInformation($"Message with id {message.Id.ToString()} received!");
+      _logger.LogInformation($"Message with id {message.Id.ToString()} received! ccccccccccccccccccc");
 
       //Validate message received
       using (var httpClient = new HttpClient())
@@ -29,9 +34,20 @@ namespace Tutorial.Controllers
            new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
            );
 
-        _logger.LogInformation($"Message with id {message.Id.ToString()} published with status {result.StatusCode}!");
+        _logger.LogInformation($"Message with id {message.Id.ToString()} published with status {result.StatusCode}! bbbbbbbbbbbbb");
       }
 
       return Ok();
     }
+
+    [Topic("messagetopic")]
+    [HttpPost]
+    [Route("messagetopic")]
+    public async Task<IActionResult> ProcessOrder([FromBody] Message message)
+    {
+      //Process message placeholder
+      _logger.LogInformation($"Message with id {message.Id.ToString()} processed! aaaaaaaaaaaa");
+      return Ok();
+    }
   }
+}
