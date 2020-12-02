@@ -41,7 +41,8 @@ namespace Tutorial.Controllers
       using (var httpClient = new HttpClient())
       {
         var result = await httpClient.PostAsync(
-           "http://localhost:3500/v1.0/publish/messagetopic",
+          Const.EndPoints.EndPointTutorial.MessageTopic,
+           
            new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
            );
 

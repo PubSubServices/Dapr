@@ -22,10 +22,10 @@ namespace MicroServiceB.Controllers
     }
 
     [HttpPost]
-    [Route("api/messageb")]
+    [Route("api/message")]
     public async Task<IActionResult> ReceiveMessage([FromBody] MessageMicroB message)
     {
-      _logger.LogInformation($"Message with id {message.Id.ToString()} received!");
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} received!");
 
       //Validate message received
       using (var httpClient = new HttpClient())
@@ -35,7 +35,7 @@ namespace MicroServiceB.Controllers
            new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
            );
 
-        _logger.LogInformation($"Message with id {message.Id.ToString()} published with status {result.StatusCode}!");
+        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} published with status {result.StatusCode}!");
       }
 
       return Ok();
