@@ -1,0 +1,38 @@
+version: '3'
+services:
+  ############################
+  # Savings API
+  ############################
+  savings:
+    image: savings
+    build:
+        context: .
+        dockerfile: Dapr.Savings/Dockerfile
+    ports:
+      - "50002:80"
+    depends_on:
+      - redis
+      - placement
+    networks:
+      - hello-dapr
+  ############################
+  # Dapr placement service
+  ############################
+  placement:
+    image: "daprio/dapr:1.0.0-rc.1"
+    command: ["./placement", "-port", "50006"]
+    ports:
+      - "50006:50006"
+    networks:
+      - hello-dapr
+  ############################
+  # Redis state store
+  ############################
+  redis:
+    image: "redis"
+    ports:
+      - "6380:6379"
+    networks:
+      - hello-dapr
+networks:
+    hello-dapr:

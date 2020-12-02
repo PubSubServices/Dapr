@@ -5,6 +5,13 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapr.PoC", "Dapr.PoC\Dapr.PoC.csproj", "{779F66DC-1398-465E-8899-CA6554306631}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapr.Savings", "Dapr.Savings\Dapr.Savings.csproj", "{2E929AEA-13BB-4C63-947D-DBF5436900FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4732D3C0-9BA2-48F2-828E-976F7EFC2526}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{779F66DC-1398-465E-8899-CA6554306631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{779F66DC-1398-465E-8899-CA6554306631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{779F66DC-1398-465E-8899-CA6554306631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
