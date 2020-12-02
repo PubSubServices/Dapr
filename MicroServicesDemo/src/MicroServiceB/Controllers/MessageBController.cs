@@ -31,7 +31,7 @@ namespace MicroServiceB.Controllers
       using (var httpClient = new HttpClient())
       {
         var result = await httpClient.PostAsync(
-          Const.EndPoints.EndPointB.MessageTopic,
+          Const.EndPoints.EndPointA.MessageTopic,
            new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
            );
 

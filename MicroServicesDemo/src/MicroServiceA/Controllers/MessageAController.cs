@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 namespace MicroServiceA.Controllers
 {
   [ApiController]
-  public class MessageController : ControllerBase
+  public class MessageAController : ControllerBase
   {
-    private readonly ILogger<MessageController> _logger;
+    private readonly ILogger<MessageAController> _logger;
 
-    public MessageController(ILogger<MessageController> logger)
+    public MessageAController(ILogger<MessageAController> logger)
     {
       _logger = logger;
     }
