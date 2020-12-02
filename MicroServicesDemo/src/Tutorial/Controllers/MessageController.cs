@@ -1,24 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Dapr;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Dapr;
+﻿using Dapr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Shared;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Tutorial.Controllers
 {
@@ -26,6 +13,7 @@ namespace Tutorial.Controllers
   public class MessageController : ControllerBase
   {
     private readonly ILogger<MessageController> _logger;
+
     public MessageController(ILogger<MessageController> logger)
     {
       _logger = logger;
@@ -42,7 +30,7 @@ namespace Tutorial.Controllers
       {
         var result = await httpClient.PostAsync(
           Const.EndPoints.EndPointTutorial.MessageTopic,
-           
+
            new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
            );
 

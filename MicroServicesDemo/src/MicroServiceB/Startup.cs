@@ -35,7 +35,7 @@ namespace MicroServiceB
       {
         app.UseDeveloperExceptionPage();
       }
-      app.UseCloudEvents();
+      //app.UseCloudEvents();
       app.UseRouting();
       app.UseAuthorization();
       app.UseEndpoints(endpoints =>

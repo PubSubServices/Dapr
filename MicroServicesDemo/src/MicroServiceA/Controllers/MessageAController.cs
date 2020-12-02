@@ -1,4 +1,5 @@
 ﻿using Dapr;
+using MicroServiceA.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -39,13 +40,13 @@ namespace MicroServiceA.Controllers
       return Ok();
     }
 
-    [Topic("messagetopic A")]
+    [Topic("pubsub", "messagetopic A")]
     [HttpPost]
     [Route("messagetopic")]
-    public async Task<IActionResult> ProcessOrder([FromBody] MessageMicroA message)
+    public async Task<IActionResult> ProcessOrder([FromBody] DaprEvent<MessageMicroA>  message)
     {
       //Process message placeholder
-      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.Id.ToString()} processed!");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
       return Ok();
     }
   }
