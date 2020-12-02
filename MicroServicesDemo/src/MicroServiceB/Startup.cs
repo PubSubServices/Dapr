@@ -35,17 +35,15 @@ namespace MicroServiceB
       {
         app.UseDeveloperExceptionPage();
       }
-
-      app.UseHttpsRedirection();
-
+      app.UseCloudEvents();
       app.UseRouting();
-
       app.UseAuthorization();
-
       app.UseEndpoints(endpoints =>
       {
+        endpoints.MapSubscribeHandler();
         endpoints.MapControllers();
-      });
+      }
+      );
     }
   }
 }

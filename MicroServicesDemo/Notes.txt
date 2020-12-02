@@ -6,3 +6,5 @@ enable wsl2 in docker
 
 
 dapr run --app-id pubsub --app-port 5000 --dapr-http-port 3500 dotnet run
+
+before build kill app 'Windows Powershell ISE'

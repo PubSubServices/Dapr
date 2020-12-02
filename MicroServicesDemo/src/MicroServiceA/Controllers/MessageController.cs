@@ -8,19 +8,8 @@ using Dapr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Dapr;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Shared;
 
-namespace Tutorial.Controllers
+namespace MicroServiceA.Controllers
 {
   [ApiController]
   public class MessageController : ControllerBase
@@ -33,7 +22,7 @@ namespace Tutorial.Controllers
 
     [HttpPost]
     [Route("api/message")]
-    public async Task<IActionResult> ReceiveMessage([FromBody] Message message)
+    public async Task<IActionResult> ReceiveMessage([FromBody] MessageMicroA message)
     {
       _logger.LogInformation($"Message with id {message.Id.ToString()} received! ccccccccccccccccccc");
 
@@ -51,13 +40,13 @@ namespace Tutorial.Controllers
       return Ok();
     }
 
-    [Topic("messagetopic tutorial")]
+    [Topic("messagetopic A")]
     [HttpPost]
     [Route("messagetopic")]
-    public async Task<IActionResult> ProcessOrder([FromBody] Message message)
+    public async Task<IActionResult> ProcessOrder([FromBody] MessageMicroA message)
     {
       //Process message placeholder
-      _logger.LogInformation(Const.EndPoints.EndPointTutorial.PrefixFriendly + $"Message with id {message.Id.ToString()} processed!");
+      _logger.LogInformation($"Message with id {message.Id.ToString()} processed! aaaaaaaaaaaa");
       return Ok();
     }
   }
