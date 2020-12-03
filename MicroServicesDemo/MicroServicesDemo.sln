@@ -6,9 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{830CAA3C-F803-4FC8-87AA-7C8F271457CE}"
 	ProjectSection(SolutionItems) = preProject
 		Notes.txt = Notes.txt
-		ServicesStartUp.ps1 = ServicesStartUp.ps1
-		ServicesStartUpA.ps1 = ServicesStartUpA.ps1
-		ServicesStartUpB.ps1 = ServicesStartUpB.ps1
+		powerShell\ServicesStartUp.ps1 = powerShell\ServicesStartUp.ps1
+		powerShell\ServicesStartUpA.ps1 = powerShell\ServicesStartUpA.ps1
+		powerShell\ServicesStartUpB.ps1 = powerShell\ServicesStartUpB.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceA", "src\MicroServiceA\MicroServiceA.csproj", "{18A1A2CA-604B-4A15-9F71-80383552CAD3}"

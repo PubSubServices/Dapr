@@ -35,7 +35,8 @@ namespace MicroServiceA
       {
         endpoints.MapSubscribeHandler();
         endpoints.MapControllers();
-      });
+      }
+      );
     }
   }
 }
