@@ -49,7 +49,7 @@ namespace MicroServiceA
         //  await context.Response.WriteAsync(JsonConvert.SerializeObject(subscriptions));
         //});
 
-        //endpoints.MapSubscribeHandler();
+        endpoints.MapSubscribeHandler();
         endpoints.MapControllers();
       }
       );

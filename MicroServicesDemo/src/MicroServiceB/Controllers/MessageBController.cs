@@ -27,28 +27,45 @@ namespace MicroServiceB.Controllers
     }
 
     [HttpPost]
-    [Route("api/newfoodorder")]
+    [Route("api/publishCheese")]
     public async Task<IActionResult> ReceiveMessageNewFoodOrder([FromBody] MessageB message)
     {
       _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Entering ReceiveMessageNewFoodOrder");
       _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Data Received: ");
       _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
 
-      //await InvokeMethodOnA(message);
       await PublishEvent(message);
 
       _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Exiting ReceiveMessageNewFoodOrder");
       return Ok();
     }
 
-    private async Task InvokeMethodOnA(MessageB message)
+
+    [HttpPost]
+    [Route("api/invoke-cheese")]
+    public async Task<IActionResult> InvokeCheese([FromBody] MessageB message)
+    {
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "s) InvokeCheese");
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Data Received: ");
+      _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
+
+      await InvokeMethod(message);
+
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "e) InvokeCheese");
+      return Ok();
+    }
+
+
+
+
+    private async Task InvokeMethod(MessageB message)
     {
       _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "s) " + "InvokeMethodOnA");
 
 
       using (var httpClient = new HttpClient())
       {
-        var endPointA = $"http://localhost:{_daprPort}" + Const.EndPoints.EndPointA.InvokeNewOrderFromBSuffix;
+        var endPointA = $"http://localhost:{_daprPort}" + Const.EndPoints.EndPointsDAPR.InvokeNewOrderFromBSuffix;
 
         _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Using endpoint : " + endPointA);
 
