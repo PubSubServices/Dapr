@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapr.Stores", "Dapr.Stores\Dapr.Stores.csproj", "{C6A7CF72-5B25-402A-B067-745F0BC402E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapr.Common", "Dapr.Common\Dapr.Common.csproj", "{3AA10419-258D-433E-999F-2CC97E4D53AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E929AEA-13BB-4C63-947D-DBF5436900FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A7CF72-5B25-402A-B067-745F0BC402E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A7CF72-5B25-402A-B067-745F0BC402E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A7CF72-5B25-402A-B067-745F0BC402E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A7CF72-5B25-402A-B067-745F0BC402E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AA10419-258D-433E-999F-2CC97E4D53AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA10419-258D-433E-999F-2CC97E4D53AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA10419-258D-433E-999F-2CC97E4D53AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA10419-258D-433E-999F-2CC97E4D53AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

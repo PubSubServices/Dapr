@@ -15,6 +15,41 @@ services:
       - placement
     networks:
       - hello-dapr
+  #### Savings Sidecar ####
+  savings-dapr:
+    image: "daprio/daprd:1.0.0-rc.1"
+    command: ["./daprd",
+     "-app-id", "savings",
+     "-placement-host-address", "placement:50006",
+     "-dapr-grpc-port", "50002"]
+    depends_on:
+      - savings
+    network_mode: "service:savings"
+  ############################
+  # Stores API
+  ############################
+  stores:
+    image: stores
+    build:
+        context: .
+        dockerfile: Dapr.Stores/Dockerfile
+    ports:
+      - "50003:80"
+    depends_on:
+      - redis
+      - placement
+    networks:
+      - hello-dapr
+  #### Stores Sidecar ####
+  stores-dapr:
+    image: "daprio/daprd:1.0.0-rc.1"
+    command: ["./daprd",
+     "-app-id", "stores",
+     "-placement-host-address", "placement:50006",
+     "-dapr-grpc-port", "50003"]
+    depends_on:
+      - stores
+    network_mode: "service:stores"
   ############################
   # Dapr placement service
   ############################

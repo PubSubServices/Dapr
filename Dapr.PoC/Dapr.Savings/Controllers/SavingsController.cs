@@ -25,7 +25,11 @@ namespace Dapr.Savings.Controllers
         [HttpGet]
         public IEnumerable<Saving> Get()
         {
-            return savingsProvider.GetSavings();
+            _logger.LogInformation("Savings request received");
+            var savings = savingsProvider.GetSavings();
+            _logger.LogInformation($"Returning {savings.Count()} savings");
+
+            return savings;
         }
     }
 }
