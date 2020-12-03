@@ -12,7 +12,7 @@
       public struct EndPointsDAPR
       {
         public static string PublishSuffix = "/v1.0/publish/pubsub";
-        public static string InvokeNewOrderFromBSuffix = "/v1.0/invoke/pubsub/method/neworderfromb";
+        public static string InvokeNewOrderFromBSuffix = "/v1.0/invoke/pubsub/method";
       }
 
       public struct AppA
