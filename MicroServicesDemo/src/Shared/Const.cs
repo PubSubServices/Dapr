@@ -4,13 +4,27 @@
   {
     public struct EndPoints
     {
+
+      public struct EndPointsDAPR
+      {
+        public static string PublishSuffix = "/v1.0/publish";
+
+      }
+
       public struct EndPointA
       {
         //public static string Message = "http://localhost:5010/api/message";
-        public static string MessageTopicA = "http://localhost:3500/v1.0/publish/pubsub/messagetopica";   //"http://localhost:3500/v1.0/publish/messagetopic"
-        public static string MessageTopicAFromB = "http://localhost:3500/v1.0/publish/pubsub/messagetopicafromb";   //"http://localhost:3500/v1.0/publish/messagetopic"
-        public static string NewOrderFromB = "http://localhost:3500/v1.0/publish/pubsub/messagetopicafromb"; 
+        public static string MessageTopicA = "http://localhost:3500/v1.0/publish/pubsub/messagetopica";   
+        public static string MessageTopicAFromB = "http://localhost:3500/v1.0/publish/pubsub/messagetopicafromb";  
+        public static string InvokeNewOrderFromBSuffix = "/v1.0/invoke/pubsuba/method/neworderfromb";
+
         public static string PrefixFriendly = "[Microservice A] - ";
+
+        public struct EventTopic
+        {
+          public static string NewOrderCheese = "newordercheese";
+        }
+
       }
 
       public struct EndPointB

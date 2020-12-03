@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Shared;
 using Shared.Models;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,65 +16,71 @@ namespace MicroServiceB.Controllers
   public class MessageBController : ControllerBase
   {
     private readonly ILogger<MessageBController> _logger;
+    private readonly StackTrace _stackTrace;
+    private readonly string _daprPort;
 
     public MessageBController(ILogger<MessageBController> logger)
     {
       _logger = logger;
+      _stackTrace = new StackTrace();
+      _daprPort = Environment.GetEnvironmentVariable("DAPR_HTTP_PORT");
     }
 
     [HttpPost]
-    [Route("api/neworder")]
-    public async Task<IActionResult> Neworder([FromBody] MessageB message)
+    [Route("api/newfoodorder")]
+    public async Task<IActionResult> ReceiveMessageNewFoodOrder([FromBody] MessageB message)
     {
-      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Entering Neworder");
-      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} received!");
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Entering ReceiveMessageNewFoodOrder");
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Data Received: ");
+      _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
 
-      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Exiting Neworder");
+      //await InvokeMethodOnA(message);
+      await PublishEvent(message);
+
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Exiting ReceiveMessageNewFoodOrder");
       return Ok();
     }
 
-    [HttpPost]
-    [Route("api/messageb")]
-    public async Task<IActionResult> ReceiveMessageB([FromBody] MessageB message)
+    private async Task InvokeMethodOnA(MessageB message)
     {
-      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Entering ReceiveMessageB");
-      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} received!");
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "s) " + "InvokeMethodOnA");
 
-      //Validate message received
-      //using (var httpClientB = new HttpClient())
-      //{
-      //  var result = await httpClientB.PostAsync(
-      //    Const.EndPoints.EndPointB.MessageTopic,
-      //     new StringContent(JsonConvert.SerializeObject(message), Encoding.UTF8, "application/json")
-      //     );
 
-      //  _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} published with status {result.StatusCode}!");
-      //}
-
-      using (var httpClientA = new HttpClient())
+      using (var httpClient = new HttpClient())
       {
-        if (message != null)
-        {
-          message.Content = "bunnies are fuzzy";
-        }
+        var endPointA = $"http://localhost:{_daprPort}" + Const.EndPoints.EndPointA.InvokeNewOrderFromBSuffix;
 
+        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Using endpoint : " + endPointA);
 
-
-        var daprPort = Environment.GetEnvironmentVariable("DAPR_HTTP_PORT");
-        var endPointA = $"http://localhost:{daprPort}/v1.0/invoke/pubsuba/method/neworderfromb";
-      
-        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Using endpointa : " + endPointA);
-
-
-        var invokeResponse = await httpClientA.PostAsync(endPointA, 
-          new StringContent(JsonConvert.SerializeObject(message), 
+        var invokeResponse = await httpClient.PostAsync(endPointA,
+          new StringContent(JsonConvert.SerializeObject(message),
           Encoding.UTF8, "application/json"));
 
-        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} published with status {invokeResponse.StatusCode}!");
+        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Message with id {message.Id.ToString()} Invoked with status {invokeResponse.StatusCode}!");
       }
 
-      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Exiting ReceiveMessageB");
-      return Ok();
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "e) " + "InvokeMethodOnA");
+    }
+
+    private async Task PublishEvent(MessageB message)
+    {
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "s) " + "PublishEvent");
+
+      using (var httpClient = new HttpClient())
+      {
+       
+        var endPoint = $"http://localhost:{_daprPort}" + Const.EndPoints.EndPointsDAPR.PublishSuffix + "/" + Const.EndPoints.EndPointA.EventTopic.NewOrderCheese;
+
+        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "Using endpoint : " + endPoint);
+
+        var response = await httpClient.PostAsync(endPoint,
+          new StringContent(JsonConvert.SerializeObject(message),
+          Encoding.UTF8, "application/json"));
+
+        _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + $"Response {response.StatusCode}!");
+      }
+
+      _logger.LogInformation(Const.EndPoints.EndPointB.PrefixFriendly + "e) " + "PublishEvent");
     }
 
     [Topic("pubsub", "messagetopicb")]

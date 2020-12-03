@@ -36,13 +36,20 @@ namespace MicroServiceA
       app.UseAuthorization();
       app.UseEndpoints(endpoints =>
       {
-        endpoints.MapGet("/dapr/subscribe", async context =>
-        {
-          var subscribedTopics = new List<string>() { "neworder" };
-          await context.Response.WriteAsync(JsonConvert.SerializeObject(subscribedTopics));
-        });
+        //endpoints.MapGet("/dapr/subscribe", async context =>
+        //{
+        //  // listen for these events
+        //  var subscriptions = new
+        //  {
+        //    pubsubname = "pubsuba",
+        //    topic = Shared.Const.EndPoints.EndPointA.EventTopic.NewOrderCheese,
+        //    route = "newordercheese"
+        //  };
 
-        endpoints.MapSubscribeHandler();
+        //  await context.Response.WriteAsync(JsonConvert.SerializeObject(subscriptions));
+        //});
+
+        //endpoints.MapSubscribeHandler();
         endpoints.MapControllers();
       }
       );

@@ -7,6 +7,7 @@ using Shared.Models;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace MicroServiceA.Controllers
 {
@@ -48,17 +49,46 @@ namespace MicroServiceA.Controllers
     public async Task<IActionResult> ProcessOrderFromA([FromBody] DaprEvent<MessageMicroA> message)
     {
       _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "Entering ProcessOrderA");
-      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
+      //_logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
       _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "Exiting ProcessOrderA");
       return Ok();
     }
+
+
+    [Topic("pubsuba", "newordercheese")]
+    [HttpGet]
+    [Route("/dapr/subscribe")]
+    public async Task<IActionResult> DogBone([FromBody] DaprEvent<MessageMicroA> message)
+    {
+      Debugger.Launch();
+      Debugger.Break();
+
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "s) ProcessOrderWithCheese");
+      //_logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "e) ProcessOrderWithCheese");
+    
+      return Ok();
+    }
+
+
+    [Topic("pubsuba", "newordercheese")]
+    [HttpPost]
+    [Route("newordercheese")]
+    public async Task<IActionResult> ProcessOrderWithCheese([FromBody] DaprEvent<MessageMicroA> message)
+    {
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "s) ProcessOrderWithCheese");
+      //_logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "e) ProcessOrderWithCheese");
+      return Ok();
+    }
+
 
     [Topic("pubsub", "messagetopicafromb")]
     [HttpPost]
     [Route("messagetopicafromb")]
     public async Task<IActionResult> ProcessOrderFromB([FromBody] DaprEvent<MessageB> message)
     {
-      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "Entering ProcessOrderA");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "s) ProcessOrderA");
       if (message?.data?.Id != null)
       {
         _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
@@ -68,18 +98,11 @@ namespace MicroServiceA.Controllers
         _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "something was null");
         _logger.LogInformation(JsonConvert.SerializeObject(message));
       }
-      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "Exiting ProcessOrderA");
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "e) ProcessOrderA");
       return Ok();
     }
 
-    //  app.UseAuthorization();
-    //    app.UseEndpoints(endpoints =>
-    //    {
-    //      endpoints.MapGet("/dapr/subscribe", async context =>
-    //      {
-    //        var subscribedTopics = new List<string>() { "neworder" };
-    //  await context.Response.WriteAsync(JsonConvert.SerializeObject(subscribedTopics));
-    //});
+    
 
     [Topic("pubsub", "neworderfromb")]
     [HttpPost]
@@ -87,6 +110,11 @@ namespace MicroServiceA.Controllers
     public async Task<IActionResult> NewOrderFromB([FromBody] DaprEvent<MessageB> message)
     {
       _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "Entering NewOrderFromB");
+      
+      _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + "Message:");
+
+      _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
+
       if (message?.data?.Id != null)
       {
         _logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");

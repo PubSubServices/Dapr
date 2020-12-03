@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceB", "src\MicroS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared.csproj", "{B57E02A2-E36C-4D4D-8AFE-75B5C2DB6634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerC", "src\ListenerC\ListenerC.csproj", "{0BAC4672-D3DB-48EC-B3F9-352A40AAB2AE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{B57E02A2-E36C-4D4D-8AFE-75B5C2DB6634}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B57E02A2-E36C-4D4D-8AFE-75B5C2DB6634}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B57E02A2-E36C-4D4D-8AFE-75B5C2DB6634}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BAC4672-D3DB-48EC-B3F9-352A40AAB2AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BAC4672-D3DB-48EC-B3F9-352A40AAB2AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BAC4672-D3DB-48EC-B3F9-352A40AAB2AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BAC4672-D3DB-48EC-B3F9-352A40AAB2AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
