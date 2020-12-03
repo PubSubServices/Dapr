@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MicroServiceA
 {
@@ -40,6 +36,12 @@ namespace MicroServiceA
       app.UseAuthorization();
       app.UseEndpoints(endpoints =>
       {
+        endpoints.MapGet("/dapr/subscribe", async context =>
+        {
+          var subscribedTopics = new List<string>() { "neworder" };
+          await context.Response.WriteAsync(JsonConvert.SerializeObject(subscribedTopics));
+        });
+
         endpoints.MapSubscribeHandler();
         endpoints.MapControllers();
       }

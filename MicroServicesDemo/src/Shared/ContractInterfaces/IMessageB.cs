@@ -1,9 +1,8 @@
-﻿//using Shared.ContractInterfaces;
-//using System;
+﻿//using System;
 
-//namespace MicroServiceB.Models
+//namespace Shared.ContractInterfaces
 //{
-//  public class MessageB : IMessageB
+//  public interface IMessageB
 //  {
 //    public Guid Id { get; set; }
 //    public string Content { get; set; }

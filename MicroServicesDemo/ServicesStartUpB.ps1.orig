@@ -1,0 +1,9 @@
+Write-Host 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+<<<<<<< HEAD
+cd C:\projects\Publix\MicroServicesDemo\src\MicroServiceB
+dapr run --app-id pubsub --app-port 5020 --dapr-http-port 3500 dotnet run
+=======
+cd "$PSScriptRoot\src\MicroServiceB"
+dapr run --app-id pubsubB --app-port 5020 --dapr-http-port 3500 dotnet run
+>>>>>>> 0f77e727ca171748e73b0ab3f74264e50a2d5870
+

@@ -6,21 +6,23 @@
     {
       public struct EndPointA
       {
-        public static string Message = "http://localhost:5010/api/message";
-        public static string MessageTopic = "http://localhost:3500/v1.0/publish/pubsub/messagetopic";   //"http://localhost:3500/v1.0/publish/messagetopic"
+        //public static string Message = "http://localhost:5010/api/message";
+        public static string MessageTopicA = "http://localhost:3500/v1.0/publish/pubsub/messagetopica";   //"http://localhost:3500/v1.0/publish/messagetopic"
+        public static string MessageTopicAFromB = "http://localhost:3500/v1.0/publish/pubsub/messagetopicafromb";   //"http://localhost:3500/v1.0/publish/messagetopic"
+        public static string NewOrderFromB = "http://localhost:3500/v1.0/publish/pubsub/messagetopicafromb"; 
         public static string PrefixFriendly = "[Microservice A] - ";
       }
 
       public struct EndPointB
       {
-        public static string Message = "http://localhost:5020/api/message";
-        public static string MessageTopic = "http://localhost:3500/v1.0/publish/pubsub/messagetopic";                                             
+        //public static string Message = "http://localhost:5010/api/message";
+        public static string MessageTopic = "http://localhost:3500/v1.0/publish/pubsub/messagetopicb";                                             
         public static string PrefixFriendly = "[Microservice B] - ";
       }
 
       public struct EndPointTutorial
       {
-        public static string Message = "http://localhost:5000/api/message";
+        //public static string Message = "http://localhost:5000/api/message";
         public static string PrefixFriendly = "[Microservice Tutorial] - ";
         public static string MessageTopic = "http://localhost:3500/v1.0/publish/messagetopic";         // "http://localhost:3500/v1.0/publish/messagetopic"
       }
