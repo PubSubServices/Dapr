@@ -23,12 +23,8 @@ namespace MicroServiceA.Controllers
     [Route("newordercheese")]
     public async Task<IActionResult> ProcessOrderWithCheese([FromBody] DaprEvent<MessageA> message)
     {
-      //Debugger.Launch();
-      //Debugger.Break();
-
       _logger.LogInformation(Const.DAPR.AppA.PrefixFriendly + "s) ProcessOrderWithCheese");
       _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
-      //_logger.LogInformation(Const.EndPoints.EndPointA.PrefixFriendly + $"Message with id {message.data.Id.ToString()} processed!");
       _logger.LogInformation(Const.DAPR.AppA.PrefixFriendly + "e) ProcessOrderWithCheese");
 
       return Ok();
