@@ -9,7 +9,8 @@ services:
         context: .
         dockerfile: Dapr.Savings/Dockerfile
     ports:
-      - "50002:80"
+      - "8082:80"
+      - "50002:50002"
     depends_on:
       - redis
       - placement
@@ -19,7 +20,8 @@ services:
   savings-dapr:
     image: "daprio/daprd:1.0.0-rc.1"
     command: ["./daprd",
-     "-app-id", "savings",
+     "-app-id", "savingsApp",
+     "-app-port", "80",
      "-placement-host-address", "placement:50006",
      "-dapr-grpc-port", "50002"]
     depends_on:
@@ -34,7 +36,8 @@ services:
         context: .
         dockerfile: Dapr.Stores/Dockerfile
     ports:
-      - "50003:80"
+     - "8083:80" 
+     - "50003:50003"
     depends_on:
       - redis
       - placement
@@ -44,7 +47,8 @@ services:
   stores-dapr:
     image: "daprio/daprd:1.0.0-rc.1"
     command: ["./daprd",
-     "-app-id", "stores",
+     "-app-id", "storesApp",
+     "-app-port", "80",
      "-placement-host-address", "placement:50006",
      "-dapr-grpc-port", "50003"]
     depends_on:
