@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ServicesStartUp.ps1 = ServicesStartUp.ps1
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tutorial", "src\Tutorial\Tutorial.csproj", "{0269EE59-0056-4A2E-93E6-DE44506EA820}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceA", "src\MicroServiceA\MicroServiceA.csproj", "{18A1A2CA-604B-4A15-9F71-80383552CAD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceB", "src\MicroServiceB\MicroServiceB.csproj", "{BF03BD1D-F308-4961-B152-E9820CD2C68A}"
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0269EE59-0056-4A2E-93E6-DE44506EA820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0269EE59-0056-4A2E-93E6-DE44506EA820}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0269EE59-0056-4A2E-93E6-DE44506EA820}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0269EE59-0056-4A2E-93E6-DE44506EA820}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18A1A2CA-604B-4A15-9F71-80383552CAD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18A1A2CA-604B-4A15-9F71-80383552CAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18A1A2CA-604B-4A15-9F71-80383552CAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace MicroServiceA
 {
@@ -36,23 +33,9 @@ namespace MicroServiceA
       app.UseAuthorization();
       app.UseEndpoints(endpoints =>
       {
-        //endpoints.MapGet("/dapr/subscribe", async context =>
-        //{
-        //  // listen for these events
-        //  var subscriptions = new
-        //  {
-        //    pubsubname = "pubsuba",
-        //    topic = Shared.Const.EndPoints.EndPointA.EventTopic.NewOrderCheese,
-        //    route = "newordercheese"
-        //  };
-
-        //  await context.Response.WriteAsync(JsonConvert.SerializeObject(subscriptions));
-        //});
-
         endpoints.MapSubscribeHandler();
         endpoints.MapControllers();
-      }
-      );
+      });
     }
   }
 }

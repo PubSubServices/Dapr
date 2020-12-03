@@ -2,7 +2,7 @@
 
 namespace Shared.Models
 {
-  public class MessageMicroA// : IMessageA
+  public class MessageA
   {
     public Guid Id { get; set; }
     public string Content { get; set; }
