@@ -29,20 +29,18 @@ namespace MicroServiceA.Controllers
     [Route("newordercheese")]
     public async Task<IActionResult> ProcessOrderWithCheese([FromBody] MessageA message)
     {
-      _logger.LogInformation(Const.DAPR.AppA.PrefixFriendly + "s) ProcessOrderWithCheese");
+      _logger.LogInformation(Const.DAPR.AppA.PrefixFriendly + "s) ProcessOrderWithCheese ");
       _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
 
       var taskList = new List<Task>();
-      for (int idx = 0; idx < 10; idx++)
+      for (int idx = 0; idx < 3; idx++)
       {
-        taskList.Add(HandOffDeepData("deep data: " +  idx));
+        taskList.Add(HandOffDeepData("AppA V1: " +  idx));
       }
 
       Task.WaitAll(taskList.ToArray());
       
-      //await HandOffDeepData(message);
-
-      _logger.LogInformation(Const.DAPR.AppA.PrefixFriendly + "e) ProcessOrderWithCheese");
+      //_logger.LogInformation(Const.DAPR.AppA.PrefixFriendly + "e) ProcessOrderWithCheese");
 
       return Ok();
     }

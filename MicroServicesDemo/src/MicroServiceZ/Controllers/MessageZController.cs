@@ -26,11 +26,11 @@ namespace MicroServiceB.Controllers
     [Route("deepdata")]
     public async Task<IActionResult> ProcessDeepData([FromBody] string message)
     {
-      _logger.LogInformation(Const.DAPR.AppZ.PrefixFriendly + "s) ProcessDeepData");
-      _logger.LogInformation(Const.DAPR.AppZ.PrefixFriendly + "Data Received: ");
-      _logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
+      _logger.LogInformation(Const.DAPR.AppZ.PrefixFriendly + "ProcessDeepData: " + message);
+      //_logger.LogInformation(Const.DAPR.AppZ.PrefixFriendly + "Data Received: ");
+      //_logger.LogInformation(JsonConvert.SerializeObject(message, Formatting.Indented));
 
-      _logger.LogInformation(Const.DAPR.AppZ.PrefixFriendly + "e) ProcessDeepData");
+      //_logger.LogInformation(Const.DAPR.AppZ.PrefixFriendly + "e) ProcessDeepData");
       return Ok();
     }
   }

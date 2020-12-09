@@ -23,7 +23,7 @@ namespace MicroServiceB.Controllers
     }
 
     [HttpPost]
-    [Route("api/publish-cheese")]
+    [Route("api/order-cheese")]
     public async Task<IActionResult> ReceiveMessageNewFoodOrder([FromBody] MessageB message)
     {
       _logger.LogInformation(Const.DAPR.AppB.PrefixFriendly + "Entering ReceiveMessageNewFoodOrder");
