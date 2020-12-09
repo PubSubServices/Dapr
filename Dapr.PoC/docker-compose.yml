@@ -6,7 +6,7 @@ services:
   savings:
     image: savings
     build:
-        context: .
+        context: . 
         dockerfile: Dapr.Savings/Dockerfile
     ports:
       - "8082:80"
@@ -23,7 +23,10 @@ services:
      "-app-id", "savingsApp",
      "-app-port", "80",
      "-placement-host-address", "placement:50006",
-     "-dapr-grpc-port", "50002"]
+     "-dapr-grpc-port", "50002",
+     "-components-path", "/components"]
+    volumes:
+     - "./components/:/components"
     depends_on:
       - savings
     network_mode: "service:savings"
@@ -50,7 +53,10 @@ services:
      "-app-id", "storesApp",
      "-app-port", "80",
      "-placement-host-address", "placement:50006",
-     "-dapr-grpc-port", "50003"]
+     "-dapr-grpc-port", "50003",
+     "-components-path", "/components"]
+    volumes:
+     - "./components/:/components"
     depends_on:
       - stores
     network_mode: "service:stores"
@@ -62,6 +68,7 @@ services:
     command: ["./placement", "-port", "50006"]
     ports:
       - "50006:50006"
+      - "9090:9090"
     networks:
       - hello-dapr
   ############################

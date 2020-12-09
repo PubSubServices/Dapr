@@ -44,11 +44,6 @@ namespace Dapr.Savings.Controllers
         }
 
         private async Task<Store> GetStoreInformation(int storeId) {
-            //_logger.LogInformation($"Fetching store #{storeId}");
-            //var store = await daprClient.InvokeMethodAsync<Store>("stores", storeId.ToString());
-            //_logger.LogInformation($"Retrieved {JsonConvert.SerializeObject(store)} for store #{storeId}");
-            //return store;
-
             Store store = null;
 
             using (var client = new HttpClient())
@@ -57,10 +52,11 @@ namespace Dapr.Savings.Controllers
                 string content = await response.Content.ReadAsStringAsync();
                 _logger.LogInformation($"Store lookup response: {response.StatusCode} - {content}");
 
-                if (response.IsSuccessStatusCode) {
+                if (response.IsSuccessStatusCode)
+                {
                     store = JsonConvert.DeserializeObject<Store>(content);
                 }
-                
+
             }
 
             return store;

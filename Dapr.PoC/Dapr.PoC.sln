@@ -16,6 +16,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapr.Stores", "Dapr.Stores\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapr.Common", "Dapr.Common\Dapr.Common.csproj", "{3AA10419-258D-433E-999F-2CC97E4D53AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{771F1FCE-FACA-4542-B4D0-C96A579FD6CF}"
+	ProjectSection(SolutionItems) = preProject
+		Components\pubsub.yaml = Components\pubsub.yaml
+		Components\statestore.yaml = Components\statestore.yaml
+		Components\tracing.yaml = Components\tracing.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +48,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{771F1FCE-FACA-4542-B4D0-C96A579FD6CF} = {4732D3C0-9BA2-48F2-828E-976F7EFC2526}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93303224-2FBF-40AD-B993-B70F52845062}
